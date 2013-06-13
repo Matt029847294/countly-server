@@ -14,7 +14,8 @@ var events = {},
             tmpEventObj = {},
             tmpEventColl = {},
             shortCollectionName = "",
-            eventCollectionName = "";
+            eventCollectionName = "",
+			eventLogs = [];
 
         for (var i=0; i < params.qstring.events.length; i++) {
 
@@ -41,6 +42,20 @@ var events = {},
                 params.time = common.initTimeObj(params.appTimezone, params.qstring.events[i].timestamp);
             }
 
+			if (storedEvents !== undefined && (storedEvents.length == 0 || storedEvents.indexOf(currEvent.key) !== -1)){
+			var loggedEvent = {
+				_id: currEvent.id || undefined
+				};
+				loggedEvent[common.dbEventLogMap.key] = currEvent.key;
+				loggedEvent[common.dbEventLogMap.timestamp] = Math.round(now.getTime() / 1000);
+				loggedEvent[common.dbEventLogMap.user] = params.app_user_id;
+				loggedEvent[common.dbEventLogMap.count] = currEvent.count;
+				loggedEvent[common.dbEventLogMap.sum] = currEvent.sum;
+				loggedEvent[common.dbEventLogMap.segmentation] = currEvent.segmentation;
+
+				eventLogs.push(loggedEvent);
+			}
+			
             common.arrayAddUniq(events, shortCollectionName);
 
             if (currEvent.sum && common.isNumber(currEvent.sum)) {
@@ -145,6 +160,8 @@ var events = {},
             }
         }
 
+	    if (eventLogs.length) common.db.collection('event_log' + params.app_id).insert(eventLogs, {keepGoing: true});
+		
         if (events.length) {
             var eventSegmentList = {'$addToSet': {'list': {'$each': events}}};
 
