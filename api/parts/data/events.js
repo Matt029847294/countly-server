@@ -47,7 +47,7 @@ var events = {},
 				_id: currEvent.id || undefined
 				};
 				loggedEvent[common.dbEventLogMap.key] = currEvent.key;
-				loggedEvent[common.dbEventLogMap.timestamp] = Math.round(now.getTime() / 1000);
+				loggedEvent[common.dbEventLogMap.timestamp] = params.time.timestamp;
 				loggedEvent[common.dbEventLogMap.user] = params.app_user_id;
 				loggedEvent[common.dbEventLogMap.count] = currEvent.count;
 				loggedEvent[common.dbEventLogMap.sum] = currEvent.sum;
