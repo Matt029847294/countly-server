@@ -5,6 +5,8 @@ var common = {},
     mongo = require('mongoskin'),
     countlyConfig = require('./../config');
 
+	apiConfig = countlyConfig.api,
+    storedEvents = apiConfig.events && apiConfig.events.log ? (apiConfig.events.whitelist || []) : undefined;
 (function (common) {
 
     common.dbMap = {
@@ -34,6 +36,15 @@ var common = {},
         'platform_version':'pv',
         'app_version':'av'
     };
+
+	common.dbEventLogMap = {
+		'key': 'k',
+		'timestamp': 't',
+		'user': 'u',
+		'count': 'c',
+		'sum': 's',
+		'segmentation': 'seg'
+	};
 
     var connectionString = (typeof countlyConfig.mongodb === "string")? countlyConfig.mongodb : (countlyConfig.mongodb.host + ':' + countlyConfig.mongodb.port + '/' + countlyConfig.mongodb.db + '?auto_reconnect');
     common.db = mongo.db(connectionString);
