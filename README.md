@@ -29,7 +29,7 @@ We develop and test Countly on Ubuntu with MongoDB, Node.js and nginx. Installat
 
 ##How do I upgrade my Countly server?
 
-countly-server package includes an upgrade script (`bin/countly.upgrade.sh`) that takes care of the upgrade process. [See this tutorial](http://support.count.ly/kb/web-installation/upgrading-countly-server-to-v1212-from-v1209) if you would like to perform the upgrade manually (12.09 to 12.12).
+countly-server package includes an upgrade script (`bin/countly.upgrade.sh`) that takes care of the upgrade process.
 
 ##API & Frontend
 
@@ -45,20 +45,17 @@ Contains seperate  helper js files for each data visualization. For example `cou
 ####3. api/api.js
 
 Countly write and read API. Waits for write requests from the mobile SDKs and read requests from the 
-Countly js helpers. Refer to [Countly Server API Reference](http://support.count.ly/kb/reference/countly-server-api-reference) for details.
-
-##Which mobile operating systems are supported?
-Countly offers integration with world's leading mobile operating systems: Android, iOS, Windows Phone and Blackberry.
+Countly js helpers. Refer to [Countly Server API Reference](http://count.ly/resources/reference/server-api) for details.
 
 ##How can I help you with your efforts?
 Glad you asked. We need ideas, feedbacks and constructive comments. All your suggestions will be taken care with upmost importance. 
 
 We are on [Twitter](http://twitter.com/gocountly) and [Facebook](http://www.facebook.com/Countly) if you would like to keep up with our fast progress!
 
-##Home
+##Links
 
-[http://count.ly](http://count.ly "Countly")
+* [Countly web page](http://count.ly)
+* [Countly support](http://support.count.ly)
+* [Resources and documentation](http://count.ly/resources)
+* [Packages on Sourceforge for direct download](http://sf.net/projects/countly)
 
-##Community & support
-
-[http://support.count.ly](http://support.count.ly "Countly Support")
